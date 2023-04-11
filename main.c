@@ -27,7 +27,18 @@ int main(int argc, char const *argv[])
     int currentTime = jobs[0]->arrivalTime;
     int index = 0;
 
-    
+    while(index < numberOfJobs || currentTime <= hyperPeriod) {
+        updateLaxity(jobs, numberOfJobs, currentTime);
+        updateQueueWithReadyJobs(head, tail, jobs, &index, numberOfJobs, currentTime);
+
+        job *currentJob = getMinLaxitJob(head, tail);
+        double executionTime = currentJob->remainingTime;
+        
+        if (index < numberOfJobs) executionTime = min(executionTime, jobs[index]->arrivalTime);
+
+        currentJob->remainingTime -= executionTime;
+        if (currentJob->remainingTime == 0) removeJobFromQueue(head, tail, currentJob);
+    }
 
     return 0;
 }
