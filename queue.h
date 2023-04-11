@@ -17,4 +17,10 @@ void pushBack(queueNode *head, queueNode *tail, job *jobPtr);
 
 job * getMinLaxitJob(queueNode *head, queueNode *tail);
 
+int removeJobFromQueue(queueNode *head, queueNode *tail, job *jobPtr); 
+
+void updateQueueWithReadyJobs(queueNode *head, queueNode *tail, job **jobs, int *index, int numberOfJobs, double currentTime);
+
+int queueIsEmpty(queueNode *head, queueNode *tail);
+
 #endif

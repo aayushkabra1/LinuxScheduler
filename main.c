@@ -3,6 +3,7 @@
 #include "task.h"
 #include "utils.h"
 #include "job.h"
+#include "queue.h"
 
 int main(int argc, char const *argv[])
 {
@@ -20,20 +21,13 @@ int main(int argc, char const *argv[])
     int numberOfJobs = 0;
     fillAndSortJobs(jobs, &numberOfJobs, tasks, numberOfTasks, hyperPeriod);
 
+    // create a ready queue
+    queueNode *head, *tail;
+
     int currentTime = jobs[0]->arrivalTime;
     int index = 0;
 
-    while(index < numberOfJobs || currentTime <= hyperPeriod) {
-        if (index == numberOfJobs - 1) {
-            printf("%d, %d completed.\n", jobs[index]->taskId, jobs[index]->jobId);
-            jobs[index]->remainingTime = 0;
-            index++;
-            break;
-        }
-
-        double executionTime = min(jobs[index + 1]->arrivalTime, jobs[index]->remainingTime);
-        
-    }
+    
 
     return 0;
 }
