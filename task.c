@@ -33,6 +33,7 @@ void getTasks(task **tasks, int *numberOfTasks) {
         temp->deadline = d;
         temp->period = p;
         temp->worstCaseExecutionTime = e;
+        temp->taskId = i + 1;
 
         tasks[i++] = temp;
     }

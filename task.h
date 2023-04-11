@@ -6,6 +6,7 @@ struct task {
     double deadline;
     double period;
     double worstCaseExecutionTime;
+    int taskId;
 };
 
 typedef struct task task;

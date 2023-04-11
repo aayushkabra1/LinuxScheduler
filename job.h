@@ -11,6 +11,8 @@ struct job {
     double laxity;
     double remainingTime;
     double actualBurstTime;
+    int jobId;
+    int taskId;
 };
 
 typedef struct job job;

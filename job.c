@@ -72,6 +72,9 @@ void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int numberOfTa
             newJob->deadline = newJob->arrivalTime + taskPtr->deadline;
             newJob->period = taskPtr->period;
             newJob->laxity = newJob->deadline - newJob->remainingTime;
+            newJob->taskId = taskPtr->taskId;
+
+            newJob->jobId = j + 1;
 
             jobs[jobIndex++] = newJob;
         }
