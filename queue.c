@@ -1,41 +1,42 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "queue.h"
 
-task * getFront(queueNode *head, queueNode *tail) {
+job * getFront(queueNode *head, queueNode *tail) {
     if (head == NULL && tail == NULL) return NULL;
 
-    return head->taskPtr;
+    return head->jobPtr;
 }
 
-void pushBack(queueNode *head, queueNode *tail, task *taskPtr) {
+void pushBack(queueNode *head, queueNode *tail, job *jobPtr) {
     if (head == NULL && tail == NULL) {
         head = (queueNode *)malloc(sizeof(queueNode));
         tail = head;
 
-        head->taskPtr = taskPtr;
+        head->jobPtr = jobPtr;
 
         return;
     }
 
     queueNode *newNode = (queueNode *)malloc(sizeof(queueNode));
-    newNode->taskPtr = taskPtr;
+    newNode->jobPtr = jobPtr;
     tail->next = newNode;
     newNode->prev = tail;
     tail = tail->next;
 }
 
-task * getMinLaxityTask(queueNode *head, queueNode *tail) {
-    queueNode *retTask = head, *temp = head;
-    double minLaxity = retTask->taskPtr->laxity;
+job * getMinLaxityjob(queueNode *head, queueNode *tail) {
+    queueNode *retJob = head, *temp = head;
+    double minLaxity = retJob->jobPtr->laxity;
 
     while(temp) {
-        if (temp->taskPtr->laxity < minLaxity) {
-            retTask = temp;
-            minLaxity = retTask->taskPtr->laxity;
+        if (temp->jobPtr->laxity < minLaxity) {
+            retJob = temp;
+            minLaxity = retJob->jobPtr->laxity;
         }
 
         temp = temp->next;
     }
 
-    return retTask->taskPtr;
+    return retJob->jobPtr;
 }

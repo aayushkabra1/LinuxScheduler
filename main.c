@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "task.h"
 #include "utils.h"
+#include "job.h"
 
 int main(int argc, char const *argv[])
 {
@@ -11,7 +12,15 @@ int main(int argc, char const *argv[])
     getTasks(tasks, &numberOfTasks);
 
     double hyperPeriod = lcm(tasks, numberOfTasks);
-    printf("%f\n", hyperPeriod);
+    printf("Hyper period = %.2f\n\n", hyperPeriod);
+
+    job *jobs[500];
+    int numberOfJobs = 0;
+    fillAndSortJobs(jobs, &numberOfJobs, tasks, numberOfTasks, hyperPeriod);
+
+    for (int i = 0; i < numberOfJobs; i++) {
+        printf("%f\n", jobs[i]->deadline);
+    }
 
     int currentTime = 0;
 

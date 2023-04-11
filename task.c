@@ -21,7 +21,7 @@ void getTasks(task **tasks, int *numberOfTasks) {
         fscanf(filePtr, "%lf", &p);
         fscanf(filePtr, "%lf", &e);
 
-        int fraction = (rand() * 40.0 / RAND_MAX) + 60;
+        
 
         task *temp = (task *)malloc(sizeof(task));
         if (temp == NULL) {
@@ -33,8 +33,6 @@ void getTasks(task **tasks, int *numberOfTasks) {
         temp->deadline = d;
         temp->period = p;
         temp->worstCaseExecutionTime = e;
-        temp->actualBurstTime = fraction * temp->worstCaseExecutionTime / 100.0;
-        temp->remainingTime = temp->actualBurstTime;
 
         tasks[i++] = temp;
     }
@@ -43,7 +41,5 @@ void getTasks(task **tasks, int *numberOfTasks) {
 }
 
 void updateLaxity(task **tasks, int numberOfTasks, int currentTime) {
-    for (int i = 0; i < numberOfTasks; i++) {
-        tasks[i]->laxity = tasks[i]->deadline - currentTime - tasks[i]->remainingTime;
-    }
+    // TODO
 }

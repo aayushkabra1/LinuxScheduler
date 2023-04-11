@@ -1,20 +1,20 @@
 #ifndef queue
 #define queue
 
-#include "task.h"
+#include "job.h"
 
 struct queueNode {
-    task *taskPtr;
+    job *jobPtr;
     struct queueNode *next;
     struct queueNode *prev;
 };
 
 typedef struct queueNode queueNode;
 
-task * getFront(queueNode *head, queueNode *tail);
+job * getFront(queueNode *head, queueNode *tail);
 
-void pushBack(queueNode *head, queueNode *tail, task *taskPtr);
+void pushBack(queueNode *head, queueNode *tail, job *jobPtr);
 
-task * getMinLaxityTask(queueNode *head, queueNode *tail);
+job * getMinLaxitJob(queueNode *head, queueNode *tail);
 
 #endif

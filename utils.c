@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "task.h"
 
 void swap(long long *a, long long *b) {
     long long temp = *a;
