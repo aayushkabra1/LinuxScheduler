@@ -13,6 +13,4 @@ typedef struct task task;
 
 void getTasks(task **tasks, int *numberOfTasks);
 
-void updateLaxity(task **tasks, int numberOfTasks, int currentTime);
-
 #endif

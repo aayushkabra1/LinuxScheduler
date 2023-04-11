@@ -85,3 +85,8 @@ void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int numberOfTa
     mergeSort(jobs, 0, *numberOfJobs - 1);
 }
 
+void updateLaxity(job **jobs, int numberOfJobs, double currentTime) {
+    for (int i = 0; i < numberOfJobs; i++) {
+        jobs[i]->laxity = jobs[i]->deadline - currentTime - jobs[i]->remainingTime;
+    }
+}

@@ -21,4 +21,6 @@ void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int numberOfTa
 
 void mergeSort(job **jobs, int l, int r);
 
+void updateLaxity(job **jobs, int numberOfJobs, double currentTime);
+
 #endif

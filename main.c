@@ -11,29 +11,29 @@ int main(int argc, char const *argv[])
     int numberOfTasks = 0;
     getTasks(tasks, &numberOfTasks);
 
+    // get the hyper period
     double hyperPeriod = lcm(tasks, numberOfTasks);
     printf("Hyper period = %.2f\n\n", hyperPeriod);
 
+    // generate actual jobs from tasks
     job *jobs[500];
     int numberOfJobs = 0;
     fillAndSortJobs(jobs, &numberOfJobs, tasks, numberOfTasks, hyperPeriod);
 
-    // for (int i = 0; i < numberOfJobs; i++) {
-    //     printf("%d, %d  |  ", jobs[i]->taskId, jobs[i]->jobId);
-    //     printf("%.2f %.2f %.2f %.2f\n",jobs[i]->arrivalTime, jobs[i]->deadline, jobs[i]->worstCaseExecutionTime, jobs[i]->period);
-    // }
-
     int currentTime = jobs[0]->arrivalTime;
     int index = 0;
 
-    // while(index < numberOfJobs || currentTime <= hyperPeriod) {
-    //     if (index == numberOfJobs - 1) {
-    //         printf()
-    //     }
+    while(index < numberOfJobs || currentTime <= hyperPeriod) {
+        if (index == numberOfJobs - 1) {
+            printf("%d, %d completed.\n", jobs[index]->taskId, jobs[index]->jobId);
+            jobs[index]->remainingTime = 0;
+            index++;
+            break;
+        }
 
-    //     double executionTime = min(jobs[index + 1]->arrivalTime, jobs[index]->remainingTime);
-
-    // }
+        double executionTime = min(jobs[index + 1]->arrivalTime, jobs[index]->remainingTime);
+        
+    }
 
     return 0;
 }

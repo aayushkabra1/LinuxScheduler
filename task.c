@@ -40,7 +40,3 @@ void getTasks(task **tasks, int *numberOfTasks) {
 
     *numberOfTasks = i;
 }
-
-void updateLaxity(task **tasks, int numberOfTasks, int currentTime) {
-    // TODO
-}
