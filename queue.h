@@ -15,4 +15,6 @@ task * getFront(queueNode *head, queueNode *tail);
 
 void pushBack(queueNode *head, queueNode *tail, task *taskPtr);
 
+task * getMinLaxityTask(queueNode *head, queueNode *tail);
+
 #endif
