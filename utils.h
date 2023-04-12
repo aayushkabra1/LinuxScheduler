@@ -9,4 +9,6 @@ long long gcd(long long a, long long b);
 
 void swap(long long *a, long long *b);
 
+double min(double a, double b);
+
 #endif

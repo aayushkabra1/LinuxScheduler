@@ -29,3 +29,8 @@ double lcm(task **tasks, int numberOfTasks) {
 
     return ans / 100.0;
 }
+
+double min(double a, double b) {
+    if (a <= b) return a;
+    return b;
+}
