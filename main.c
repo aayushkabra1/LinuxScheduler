@@ -26,37 +26,36 @@ int main(int argc, char const *argv[])
     // }
 
     // create a ready queue
-    queueNode *head = NULL, *tail = NULL;
+    
+    // int currentTime = jobs[0]->arrivalTime;
+    // int index = 0;
 
-    int currentTime = jobs[0]->arrivalTime;
-    int index = 0;
+    // while(index < numberOfJobs || currentTime <= hyperPeriod) {
+    //     updateLaxity(jobs, numberOfJobs, currentTime);
 
-    while(index < numberOfJobs || currentTime <= hyperPeriod) {
-        updateLaxity(jobs, numberOfJobs, currentTime);
+    //     updateQueueWithReadyJobs(head, tail, jobs, &index, numberOfJobs, currentTime);
 
-        updateQueueWithReadyJobs(head, tail, jobs, &index, numberOfJobs, currentTime);
+    //     job *currentJob = getMinLaxityJob(head, tail);
 
-        job *currentJob = getMinLaxityJob(head, tail);
-
-        if (currentJob == NULL) {
-            if (index >= numberOfJobs) exit(0);
+    //     if (currentJob == NULL) {
+    //         if (index >= numberOfJobs) exit(0);
             
-            printf("%f | CPU is idle for %f\n", currentTime, jobs[index]->arrivalTime - currentTime);
-            currentTime = jobs[index]->arrivalTime;
-            continue;
-        }
+    //         printf("%f | CPU is idle for %f\n", currentTime, jobs[index]->arrivalTime - currentTime);
+    //         currentTime = jobs[index]->arrivalTime;
+    //         continue;
+    //     }
 
-        double executionTime = currentJob->remainingTime;
+    //     double executionTime = currentJob->remainingTime;
         
-        if (index < numberOfJobs) executionTime = min(executionTime, jobs[index]->arrivalTime);
+    //     if (index < numberOfJobs) executionTime = min(executionTime, jobs[index]->arrivalTime);
 
-        printf("%f | %d, %d job running for %f time.\n", currentTime, currentJob->taskId, currentJob->jobId, executionTime);
+    //     printf("%f | %d, %d job running for %f time.\n", currentTime, currentJob->taskId, currentJob->jobId, executionTime);
 
-        currentJob->remainingTime -= executionTime;
-        currentTime += executionTime;
+    //     currentJob->remainingTime -= executionTime;
+    //     currentTime += executionTime;
 
-        if (currentJob->remainingTime == 0) removeJobFromQueue(head, tail, currentJob);
-    }
+    //     if (currentJob->remainingTime == 0) removeJobFromQueue(head, tail, currentJob);
+    // }
 
     return 0;
 }

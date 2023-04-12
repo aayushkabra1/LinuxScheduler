@@ -1,26 +1,25 @@
-#ifndef queue
-#define queue
+/* queue.h */
+
+/* NODE */
+
+#ifndef QUEUE_HEADER
+#define QUEUE_HEADER
 
 #include "job.h"
 
-struct queueNode {
-    job *jobPtr;
-    struct queueNode *next;
-    struct queueNode *prev;
+struct queue_list
+{
+	job *jobPtr;
+	struct queue_list *next;
 };
+typedef struct queue_list QNODE;
 
-typedef struct queueNode queueNode;
-
-job * getFront(queueNode *head, queueNode *tail);
-
-void pushBack(queueNode *head, queueNode *tail, job *jobPtr);
-
-job * getMinLaxitJob(queueNode *head, queueNode *tail);
-
-int removeJobFromQueue(queueNode *head, queueNode *tail, job *jobPtr); 
-
-void updateQueueWithReadyJobs(queueNode *head, queueNode *tail, job **jobs, int *index, int numberOfJobs, double currentTime);
-
-int queueIsEmpty(queueNode *head, queueNode *tail);
+/* HEAD */
+typedef struct
+{
+	int numNodes;
+	int maxSize;
+	QNODE *next;
+}QHEAD;
 
 #endif
