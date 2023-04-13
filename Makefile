@@ -14,3 +14,6 @@ queueOps.o: queueOps.c queueOps.h queue.h
 
 job.o: job.c job.h
 	$(CC) -c job.c
+
+clean:
+	rm -f *.o *.out
