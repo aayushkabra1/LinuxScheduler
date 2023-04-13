@@ -17,10 +17,10 @@ struct job {
 
 typedef struct job job;
 
-void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int numberOfTasks, double hyperPeriod);
+extern void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int numberOfTasks, double hyperPeriod);
 
-void mergeSort(job **jobs, int l, int r);
+extern void mergeSort(job **jobs, int l, int r);
 
-void updateLaxity(job **jobs, int numberOfJobs, double currentTime);
+extern void updateLaxity(job **jobs, int numberOfJobs, double currentTime);
 
 #endif

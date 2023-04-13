@@ -11,6 +11,6 @@ struct task {
 
 typedef struct task task;
 
-void getTasks(task **tasks, int *numberOfTasks);
+extern void getTasks(task **tasks, int *numberOfTasks);
 
 #endif

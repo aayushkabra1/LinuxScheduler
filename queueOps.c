@@ -55,13 +55,15 @@ void addQ(QHEAD *qhead, job *jobPtr)
 	}
 }
 
-void deleteFromQueue(QHEAD *qhead, job *jobPtr) {
+int deleteFromQueue(QHEAD *qhead, job *jobPtr) {
+	if (qhead->next == NULL) return 0;
+	
 	QNODE *temp = qhead->next;
 
 	if (temp->jobPtr == jobPtr) {
 		qhead->next = temp->next;
 		free(temp);
-		return;
+		return 1;
 	}
 
 	while(temp->next) {
@@ -69,15 +71,35 @@ void deleteFromQueue(QHEAD *qhead, job *jobPtr) {
 			QNODE *next = temp->next, *next2 = temp->next->next;
 			temp->next = next2;
 			free(next);
+			return 1;
 		}
 		temp = temp->next;
 	}
+
+	return 0;
 }
 
 void updateQueueWithReadyJobs(QHEAD *qhead, job **jobs, int numberOfJobs, double currentTime, int *index) {
-	
 	while(*index < numberOfJobs && jobs[*index]->arrivalTime < currentTime) {
 		addQ(qhead, jobs[*index]);
 		*index = *index + 1;
 	}
+}
+
+job * getMinLaxityJob(QHEAD *qhead) {
+	if (qhead->next == NULL) return NULL;
+
+	QNODE *temp = qhead->next;
+	job *retJob = temp->jobPtr;
+	double minLaxity = retJob->laxity;
+
+	while(temp) {
+		if (temp->jobPtr->laxity < minLaxity) {
+			retJob = temp->jobPtr;
+			minLaxity = temp->jobPtr->laxity;
+		}
+		temp = temp->next;
+	}
+
+	return retJob;
 }

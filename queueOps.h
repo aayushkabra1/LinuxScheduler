@@ -8,6 +8,8 @@ extern job * frontQ(QHEAD *qhead);
 
 extern void addQ(QHEAD *qhead, job *jobPtr);
 
-extern void deleteFromQueue(QHEAD *qhead, job *jobPtr);
+extern int deleteFromQueue(QHEAD *qhead, job *jobPtr);
 
-extern void updateQueueWithReadyJobs(QHEAD *qhead, job **jobs, int numberOfJobs, task **tasks, int numberOfTasks, int currentTime, int *index);
+extern void updateQueueWithReadyJobs(QHEAD *qhead, job **jobs, int numberOfJobs, double currentTime, int *index);
+
+extern job * getMinLaxityJob(QHEAD *qhead);

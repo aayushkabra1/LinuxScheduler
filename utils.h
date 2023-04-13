@@ -3,12 +3,12 @@
 
 #include "task.h"
 
-double lcm(task **tasks, int numberOfTasks);
+extern double lcm(task **tasks, int numberOfTasks);
 
-long long gcd(long long a, long long b);
+extern long long gcd(long long a, long long b);
 
-void swap(long long *a, long long *b);
+extern void swap(long long *a, long long *b);
 
-double min(double a, double b);
+extern double min(double a, double b);
 
 #endif
