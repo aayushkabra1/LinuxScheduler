@@ -25,36 +25,39 @@ int main(int argc, char const *argv[])
     // create a ready queue
     QHEAD *qhead;
     qhead = createQueue(500);
-    
-    int currentTime = 0;
+    double currentTime = 0.0;
     int index = 0;
 
     while(index < numberOfJobs || currentTime <= hyperPeriod) {
         updateLaxity(jobs, numberOfJobs, currentTime);
 
         updateQueueWithReadyJobs(qhead, jobs, numberOfJobs, currentTime, &index);
-        printQueue(qhead);
+        // printQueue(qhead);
 
         job *currentJob = getMinLaxityJob(qhead);
-        
+
         if (currentJob == NULL) {
-            // TODO
+            if (index >= numberOfJobs) {
+                printf("Done at %.2f.\n", currentTime);
+                exit(0);
+            }
+
+            printf("%.2f | CPU is idle for %.2f units.\n\n", currentTime, jobs[index]->arrivalTime - currentTime);
+            currentTime = jobs[index]->arrivalTime;
+            continue;
         }
 
         double execTime = currentJob->remainingTime;
 
         if (index < numberOfJobs) execTime = min(execTime, jobs[index]->arrivalTime - currentTime);
 
-        printf("Execution Time = %f\n", execTime);
-        printf("(%d, %d)\n", currentJob->taskId, currentJob->jobId);
-        
+        printf("%.2f | (%d, %d) task running for %.2f units.\n", currentTime, currentJob->taskId, currentJob->jobId, execTime);
 
-        printf("%f | (%d, %d) job running for %f time.\n\n", currentTime, currentJob->taskId, currentJob->jobId, execTime);
+        currentJob->remainingTime -= execTime;
+        currentTime += execTime;
 
-        // currentJob->remainingTime -= execTime;
-        // currentTime += execTime;
-
-        // if (currentJob->remainingTime == 0) deleteFromQueue(qhead, currentJob);
+        if (currentJob->remainingTime == 0) deleteFromQueue(qhead, currentJob);
+        printf("\n");   
     }
 
     return 0;
