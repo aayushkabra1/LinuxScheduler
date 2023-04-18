@@ -80,7 +80,7 @@ int deleteFromQueue(QHEAD *qhead, job *jobPtr) {
 }
 
 void updateQueueWithReadyJobs(QHEAD *qhead, job **jobs, int numberOfJobs, double currentTime, int *index) {
-	while(*index < numberOfJobs && jobs[*index]->arrivalTime < currentTime) {
+	while(*index < numberOfJobs && jobs[*index]->arrivalTime <= currentTime) {
 		addQ(qhead, jobs[*index]);
 		*index = *index + 1;
 	}
@@ -102,4 +102,13 @@ job * getMinLaxityJob(QHEAD *qhead) {
 	}
 
 	return retJob;
+}
+
+void printQueue(QHEAD *qhead) {
+	QNODE *temp = qhead->next;
+	while(temp) {
+		printf("(%d, %d) -> ", temp->jobPtr->taskId, temp->jobPtr->jobId);
+		temp = temp->next;
+	}
+	printf("\n");
 }

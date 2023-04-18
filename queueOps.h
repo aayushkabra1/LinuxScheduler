@@ -13,3 +13,5 @@ extern int deleteFromQueue(QHEAD *qhead, job *jobPtr);
 extern void updateQueueWithReadyJobs(QHEAD *qhead, job **jobs, int numberOfJobs, double currentTime, int *index);
 
 extern job * getMinLaxityJob(QHEAD *qhead);
+
+extern void printQueue(QHEAD *qhead);

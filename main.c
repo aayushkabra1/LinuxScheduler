@@ -22,10 +22,6 @@ int main(int argc, char const *argv[])
     int numberOfJobs = 0;
     fillAndSortJobs(jobs, &numberOfJobs, tasks, numberOfTasks, hyperPeriod);
 
-    // for (int i = 0; i < numberOfJobs; i++) {
-    //     printf("%d, %d | %f %f\n", jobs[i]->taskId, jobs[i]->jobId, jobs[i]->arrivalTime, jobs[i]->deadline);
-    // }
-
     // create a ready queue
     QHEAD *qhead;
     qhead = createQueue(500);
@@ -37,27 +33,28 @@ int main(int argc, char const *argv[])
         updateLaxity(jobs, numberOfJobs, currentTime);
 
         updateQueueWithReadyJobs(qhead, jobs, numberOfJobs, currentTime, &index);
+        printQueue(qhead);
 
         job *currentJob = getMinLaxityJob(qhead);
-
+        
         if (currentJob == NULL) {
-            if (index >= numberOfJobs) exit(0);
-            
-            printf("%f | CPU is idle for %f\n", currentTime, jobs[index]->arrivalTime - currentTime);
-            currentTime = jobs[index]->arrivalTime;
-            continue;
+            // TODO
         }
 
-        double executionTime = currentJob->remainingTime;
+        double execTime = currentJob->remainingTime;
+
+        if (index < numberOfJobs) execTime = min(execTime, jobs[index]->arrivalTime - currentTime);
+
+        printf("Execution Time = %f\n", execTime);
+        printf("(%d, %d)\n", currentJob->taskId, currentJob->jobId);
         
-        if (index < numberOfJobs) executionTime = min(executionTime, jobs[index]->arrivalTime);
 
-        printf("%f | %d, %d job running for %f time.\n", currentTime, currentJob->taskId, currentJob->jobId, executionTime);
+        printf("%f | (%d, %d) job running for %f time.\n\n", currentTime, currentJob->taskId, currentJob->jobId, execTime);
 
-        currentJob->remainingTime -= executionTime;
-        currentTime += executionTime;
+        // currentJob->remainingTime -= execTime;
+        // currentTime += execTime;
 
-        if (currentJob->remainingTime == 0) deleteFromQueue(qhead, currentJob);
+        // if (currentJob->remainingTime == 0) deleteFromQueue(qhead, currentJob);
     }
 
     return 0;

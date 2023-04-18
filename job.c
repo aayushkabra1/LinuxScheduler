@@ -67,7 +67,8 @@ void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int numberOfTa
 
             newJob->arrivalTime = taskPtr->arrivalTime + j*taskPtr->period;
             newJob->worstCaseExecutionTime = taskPtr->worstCaseExecutionTime;
-            newJob->actualBurstTime = fraction * newJob->worstCaseExecutionTime / 100.0;
+            // newJob->actualBurstTime = fraction * newJob->worstCaseExecutionTime / 100.0;
+            newJob->actualBurstTime = newJob->worstCaseExecutionTime;
             newJob->remainingTime = newJob->actualBurstTime;
             newJob->deadline = newJob->arrivalTime + taskPtr->deadline;
             newJob->period = taskPtr->period;
