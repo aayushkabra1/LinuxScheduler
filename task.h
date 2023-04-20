@@ -13,4 +13,6 @@ typedef struct task task;
 
 extern void getTasks(task **tasks, int *numberOfTasks);
 
+extern void deleteTasks(task **tasks, int numberOfTasks);
+
 #endif

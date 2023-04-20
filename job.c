@@ -90,3 +90,10 @@ void updateLaxity(job **jobs, int numberOfJobs, double currentTime) {
         jobs[i]->laxity = jobs[i]->deadline - currentTime - jobs[i]->remainingTime;
     }
 }
+
+
+void deleteJobs(job **jobs, int numberOfJobs) {
+    for (int i = 0; i < numberOfJobs; i++) {
+        free(jobs[i]);
+    }
+}

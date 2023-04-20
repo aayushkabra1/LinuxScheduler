@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
 
     // get the hyper period
     double hyperPeriod = lcm(tasks, numberOfTasks);
-    printf("Hyper period = %.2f\n\n", hyperPeriod);
+    printf("Hyper period = %f\n\n", hyperPeriod);
 
     // // generate actual jobs from tasks
     job *jobs[500];
@@ -59,6 +59,10 @@ int main(int argc, char const *argv[])
         if (currentJob->remainingTime == 0) deleteFromQueue(qhead, currentJob);
         printf("\n");   
     }
+
+    // Release memory.
+    deleteTasks(tasks, numberOfTasks);
+    deleteJobs(jobs, numberOfJobs);
 
     return 0;
 }

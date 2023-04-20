@@ -40,3 +40,9 @@ void getTasks(task **tasks, int *numberOfTasks) {
 
     *numberOfTasks = i;
 }
+
+void deleteTasks(task **tasks, int numberOfTasks) {
+    for (int i = 0; i < numberOfTasks; i++) {
+        free(tasks[i]);
+    }
+}

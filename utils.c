@@ -19,7 +19,7 @@ long long gcd(long long a, long long b) {
 double lcm(task **tasks, int numberOfTasks) {
     long long periods[50];
     for (int i = 0; i < numberOfTasks; i++) {
-        periods[i] = ((long long)tasks[i]->period * 100);
+        periods[i] = (long long)(tasks[i]->period * 100);
     }
 
     long long ans = periods[0];
