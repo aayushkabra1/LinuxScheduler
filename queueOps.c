@@ -112,3 +112,13 @@ void printQueue(QHEAD *qhead) {
 	}
 	printf("\n");
 }
+
+void updateLaxity(QHEAD *qhead, double currentTime) {
+	if (qhead == NULL) return;
+
+	QNODE *temp = qhead->next;
+	while(temp) {
+		temp->jobPtr->laxity = temp->jobPtr->deadline - temp->jobPtr->remainingTime - currentTime;
+		temp = temp->next;
+	}
+}

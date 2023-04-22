@@ -21,8 +21,6 @@ extern void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int num
 
 extern void mergeSort(job **jobs, int l, int r);
 
-extern void updateLaxity(job **jobs, int numberOfJobs, double currentTime);
-
 extern void deleteJobs(job **jobs, int numberOfJobs);
 
 #endif

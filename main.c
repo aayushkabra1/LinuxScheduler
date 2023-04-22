@@ -6,10 +6,10 @@
 #include "queue.h"
 #include "queueOps.h"
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
+
     // Read "tasks.txt" and get all the task details.
-    task *tasks[50];
+    task *tasks[10000];
     int numberOfTasks = 0;
     getTasks(tasks, &numberOfTasks);
 
@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
     printf("Hyper period = %f\n\n", hyperPeriod);
 
     // // generate actual jobs from tasks
-    job *jobs[500];
+    job *jobs[100000];
     int numberOfJobs = 0;
     fillAndSortJobs(jobs, &numberOfJobs, tasks, numberOfTasks, hyperPeriod);
 
@@ -28,17 +28,16 @@ int main(int argc, char const *argv[])
     double currentTime = 0.0;
     int index = 0;
 
-    while(index < numberOfJobs || currentTime <= hyperPeriod) {
-        updateLaxity(jobs, numberOfJobs, currentTime);
-
+    while(1) {
         updateQueueWithReadyJobs(qhead, jobs, numberOfJobs, currentTime, &index);
+        updateLaxity(qhead, currentTime);
         // printQueue(qhead);
 
         job *currentJob = getMinLaxityJob(qhead);
 
         if (currentJob == NULL) {
             if (index >= numberOfJobs) {
-                printf("Done at %.2f.\n", currentTime);
+                printf("Done at %.2f.\n\n", currentTime);
                 exit(0);
             }
 

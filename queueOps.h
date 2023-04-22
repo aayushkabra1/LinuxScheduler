@@ -15,3 +15,5 @@ extern void updateQueueWithReadyJobs(QHEAD *qhead, job **jobs, int numberOfJobs,
 extern job * getMinLaxityJob(QHEAD *qhead);
 
 extern void printQueue(QHEAD *qhead);
+
+extern void updateLaxity(QHEAD *qhead, double currentTime);

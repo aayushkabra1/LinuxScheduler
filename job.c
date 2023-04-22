@@ -68,6 +68,7 @@ void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int numberOfTa
             newJob->arrivalTime = taskPtr->arrivalTime + j*taskPtr->period;
             newJob->worstCaseExecutionTime = taskPtr->worstCaseExecutionTime;
             newJob->actualBurstTime = fraction * newJob->worstCaseExecutionTime / 100.0;
+            // newJob->actualBurstTime = newJob->worstCaseExecutionTime;
             newJob->remainingTime = newJob->actualBurstTime;
             newJob->deadline = newJob->arrivalTime + taskPtr->deadline;
             newJob->period = taskPtr->period;
@@ -83,12 +84,6 @@ void fillAndSortJobs(job **jobs, int *numberOfJobs, task **tasks, int numberOfTa
     *numberOfJobs = jobIndex;
 
     mergeSort(jobs, 0, *numberOfJobs - 1);
-}
-
-void updateLaxity(job **jobs, int numberOfJobs, double currentTime) {
-    for (int i = 0; i < numberOfJobs; i++) {
-        jobs[i]->laxity = jobs[i]->deadline - currentTime - jobs[i]->remainingTime;
-    }
 }
 
 
