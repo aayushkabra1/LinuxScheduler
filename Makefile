@@ -16,4 +16,4 @@ job.o: job.c job.h
 	$(CC) -c job.c
 
 clean:
-	rm -f *.o *.out
+	rm -f *.o *.out *.exe
